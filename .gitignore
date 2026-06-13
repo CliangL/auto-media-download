@@ -1,0 +1,16 @@
+# 用户真实配置（由 install.sh 从 .example 生成，含密码/IP，禁止提交）
+config/media-config.json
+# 用户私人追剧/下载状态
+data/*.json
+!data/*.example
+data/*.db
+# 运行产物
+__pycache__/
+*.pyc
+.pytest_cache/
+*.bak
+*.bak-*
+.DS_Store
+.env
+/tmp/
+/logs/

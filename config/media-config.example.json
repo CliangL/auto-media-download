@@ -1,0 +1,122 @@
+{
+  "nas": {
+    "host": "YOUR_NAS_IP",
+    "strm_url_prefix": "http://YOUR_NAS_LAN_IP:5678/d",
+    "user": "YOUR_USERNAME",
+    "password": "YOUR_NAS_PASSWORD",
+    "strm_base_dir": "/vol1/1000/docker/xiaoya/strm/C-每日更新",
+    "ssh_port": 22,
+    "tailscale_ip": "YOUR_NAS_IP",
+    "ssh_host": "fn-nas"
+  },
+  "sources": [
+    {
+      "name": "xiaoya",
+      "internal_url": "http://YOUR_NAS_IP:5678",
+      "external_url": "https://xiaoya.example.com:16666",
+      "container_port": 5678,
+      "priority": 1,
+      "auth": "none",
+      "description": "首选资源源 (g-box/xiaoya AList)",
+      "index_dirs": [
+        "/每日更新/电影/（115）",
+        "/每日更新/电影/中国",
+        "/每日更新/电影/豆瓣 Top250",
+        "/每日更新/电视剧/国产剧（115）",
+        "/每日更新/电视剧/国产剧",
+        "/每日更新/动漫/国漫",
+        "/每日更新/动漫/日漫",
+        "/每日更新/纪录片"
+      ]
+    },
+    {
+      "name": "pansou",
+      "internal_url": "http://YOUR_NAS_LAN_IP:8080",
+      "external_url": "https://pansou.example.com:16666",
+      "priority": 2,
+      "auth": "none",
+      "description": "第二资源源"
+    },
+    {
+      "name": "moontv",
+      "internal_url": "https://moontv.example.com",
+      "external_url": "https://moontv.example.com",
+      "priority": 3,
+      "auth": {
+        "username": "YOUR_USERNAME",
+        "password": "YOUR_NAS_PASSWORD"
+      },
+      "description": "第三资源源"
+    }
+  ],
+  "gbox": {
+    "internal_url": "http://YOUR_NAS_IP:4567",
+    "external_url": "http://YOUR_NAS_LAN_IP:4567",
+    "username": "admin",
+    "password": "admin",
+    "description": "夸克网盘资源管理 (g-box hostmode)"
+  },
+  "emby": {
+    "url": "http://YOUR_NAS_IP:6908",
+    "api_key": "",
+    "media_path": "/media",
+    "description": "Emby 媒体库（host 模式，内网端口 6908）"
+  },
+  "storage": {
+    "base_dir": "/vol1/1000/docker/xiaoya/strm/C-每日更新",
+    "categories": {
+      "movie": "电影",
+      "tv": "电视剧",
+      "anime": "动漫",
+      "documentary": "纪录片"
+    },
+    "whitelist": [
+      "/vol1/1000/docker/xiaoya/strm/C-每日更新"
+    ]
+  },
+  "strm": {
+    "url_prefix": "http://YOUR_NAS_LAN_IP:5678/d",
+    "container_url_prefix": "http://YOUR_NAS_LAN_IP:5678/d",
+    "path_example": "http://YOUR_NAS_LAN_IP:5678/d/每日更新/电影/（115）/流浪地球2/流浪地球2.mp4",
+    "structure": {
+      "movie": "{category}/{title}.strm",
+      "tv": "{category}/{title}/Season {season}/{title} - S{season}E{episode}.strm",
+      "anime": "{category}/{title}/Season {season}/{title} - S{season}E{episode}.strm"
+    }
+  },
+  "monitor": {
+    "enabled": true,
+    "drama_state_file": "data/drama-state.json",
+    "source_path_map": {},
+    "description": "追剧监控配置"
+  },
+  "cron": {
+    "check_updates": [
+      "08:00",
+      "18:00"
+    ],
+    "timezone": "Asia/Shanghai"
+  },
+  "feishu": {
+    "notify_enabled": true,
+    "events": {
+      "download_success": true,
+      "download_failed": true,
+      "no_resource": true,
+      "follow_enabled": true,
+      "new_episode": true
+    }
+  },
+  "security": {
+    "allowed_paths": [
+      "/vol1/1000/docker/xiaoya/strm/C-每日更新"
+    ],
+    "allow_overwrite": false,
+    "confirm_delete": true,
+    "quality_check": true,
+    "validate_before_download": true
+  },
+  "tmdb": {
+    "api_key": ""
+  }
+}
